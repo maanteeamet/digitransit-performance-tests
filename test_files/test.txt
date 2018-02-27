@@ -1,0 +1,2 @@
+http://opentripplanner-hsl.marathon.l4lb.thisdcos.directory:8080/otp/routers/hsl/index/graphql POST { stop(id: "HSL:1040129") { name lat lon wheelchairBoarding } }
+http://opentripplanner-hsl.marathon.l4lb.thisdcos.directory:8080/otp/routers/hsl/index/graphql POST { stop(id: "HSL:1040128") { name lat lon wheelchairBoarding } }

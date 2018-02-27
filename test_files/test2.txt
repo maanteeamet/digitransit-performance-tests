@@ -1,0 +1,2 @@
+http://pelias-api.marathon.l4lb.thisdcos.directory:8080/v1/search?text=helsinki
+http://pelias-api.marathon.l4lb.thisdcos.directory:8080/v1/search?text=kamppi
