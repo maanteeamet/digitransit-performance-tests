@@ -8,9 +8,15 @@ TEST_INTERVAL=${TEST_INTERVAL:-1}
 TEST_INTERVAL_SECONDS=$((($TEST_INTERVAL - 1)*24*3600))
 #start tests at this time (GMT):
 TEST_TIME=${TEST_TIME:-23:00:00}
+#Parse URL file names and headers into bash array
+IFS=',' read -r -a FILES_AND_HEADERS <<< $FILES_AND_HEADERS
+#How many concurrent users siege mimics
+CONCURRENT_USERS=${CONCURRENT_USERS:-10}
+#How long siege run lasts
+SIEGE_TIME=${SIEGE_TIME:-60s}
 
-#URL files into bash array
-FILES=($FILE_NAMES)
+#Set working directory to be directory of the test files
+cd "$(dirname "$0")"/../test_files
 
 set +e
 
@@ -28,11 +34,16 @@ while true; do
         sleep $SLEEP
     fi
 
-    for FILE in "${FILES[@]}"
+    for FILE_AND_HEADERS in "${FILES_AND_HEADERS[@]}"
     do
+        FILE=`echo $FILE_AND_HEADERS | head -n1 | awk '{print $1;}'`
         if [ -v SLACK_WEBHOOK_URL ]; then
+            curl -X POST -d \
+                "{\"channel\": \"siege-test\", \"text\": \"Testing file: $FILE \n\"""}" \
+                $SLACK_WEBHOOK_URL
             # By default, uses 10 concurrent users every second for 60 seconds
-            siege -c${CONCURRENT_USERS:10} -d1 -t${SIEGE_TIME:60s} -f $FILE 2>&1 | \
+            siege -c$CONCURRENT_USERS -d1 -t$SIEGE_TIME -f \
+                `echo "$FILE_AND_HEADERS" | sed 's/\"//g'` 2>&1 | \
                 jq -R -s '{channel: "siege-test", text: .}' | \
                 curl -X POST -H 'Content-type: application/json'  -d@- \
                 $SLACK_WEBHOOK_URL
@@ -40,7 +51,7 @@ while true; do
     done
 
 
-    if [[ "$BUILD_INTERVAL" -le 0 ]]; then
+    if [[ "$TEST_INTERVAL" -le 0 ]]; then
         #run only once
         exit 0
     fi
