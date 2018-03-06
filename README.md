@@ -9,5 +9,5 @@ There are multiple ways to configure how and what is being tested by defining en
 * TEST_TIME defines at what time of the day tests are being run (in UTC). Default is 23:00:00
 * CONCURRENT_USERS defines how many concurrent users siege uses for testing. Default is 10.
 * SIEGE_TIME defines for how long siege tests requests from one file
-* FILES_AND_HEADERS defines the files that are being tested from test_files directory and optionally headers to be used for specific files. Files (and their headers) are separated by commas without extra space inbetween. For example, FILES_AND_HEADERS='urls.txt --content-type "application/graphql",other_urls.txt -H "Content-Type: text/json"'
+* FILES_AND_HEADERS defines the files that are being tested from test_files directory and optionally headers to be used for specific files. Files (and their headers) are separated by commas without extra space inbetween. For example, FILES_AND_HEADERS="urls.txt --content-type 'application/graphql',other_urls.txt -H 'Content-Type: text/json'"
 
