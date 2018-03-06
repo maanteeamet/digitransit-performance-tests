@@ -7,7 +7,7 @@ TEST_INTERVAL=${TEST_INTERVAL:-1}
 #Substract one day, because first wait hours are computed before each run
 TEST_INTERVAL_SECONDS=$((($TEST_INTERVAL - 1)*24*3600))
 #start tests at this time (GMT):
-TEST_TIME=${TEST_TIME:-23:00:00}
+TEST_TIME=${TEST_TIME:-04:00:00}
 #Parse URL file names and headers into bash array
 IFS=',' read -r -a FILES_AND_HEADERS <<< $FILES_AND_HEADERS
 #How many concurrent users siege mimics
