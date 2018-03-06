@@ -4,7 +4,7 @@ set -e
 
 ORG=${ORG:-hsldevcom}
 DOCKER_TAG=${TRAVIS_COMMIT:-latest}
-DOCKER_IMAGE=$ORG/pelias-api
+DOCKER_IMAGE=$ORG/digitransit-performance-tests
 DOCKER_IMAGE_COMMIT=$DOCKER_IMAGE:$DOCKER_TAG
 DOCKER_IMAGE_LATEST=$DOCKER_IMAGE:latest
 
