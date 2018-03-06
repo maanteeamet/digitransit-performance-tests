@@ -39,7 +39,7 @@ while true; do
         FILE=`echo $FILE_AND_HEADERS | head -n1 | awk '{print $1;}'`
         if [ -v SLACK_WEBHOOK_URL ]; then
             curl -X POST -d \
-                "{\"channel\": \"siege-test\", \"text\": \"Testing file: $FILE \n\"""}" \
+                "{\"channel\": \"performance-tests\", \"text\": \"Testing file: $FILE \n\"""}" \
                 $SLACK_WEBHOOK_URL
             # By default, uses 10 concurrent users every second for 60 seconds
             siege -c$CONCURRENT_USERS -d1 -t$SIEGE_TIME -f \
