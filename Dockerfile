@@ -10,4 +10,4 @@ RUN apt-get update && apt-get install -y \
 RUN rm -rf /var/lib/apt/lists/*
 COPY scripts /usr/src/app/scripts
 COPY test_files /usr/src/app/test_files
-CMD ["/bin/bash", "-x", "scripts/run-tests.sh"]
+CMD ["/bin/bash", "scripts/run-tests.sh"]
