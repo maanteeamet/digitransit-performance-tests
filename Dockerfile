@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   jq
 RUN rm -rf /var/lib/apt/lists/*
+COPY .siegerc /root/.siegerc
 COPY scripts /usr/src/app/scripts
 COPY test_files /usr/src/app/test_files
 CMD ["/bin/bash", "scripts/run-tests.sh"]
