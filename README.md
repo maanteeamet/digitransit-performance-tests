@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/HSLdevcom/digitransit-performance-tests.svg?branch=master)](https://travis-ci.org/HSLdevcom/digitransit-performance-tests)
+
 ## Performance testing tool for Digitransit services
 
 This repository can be used to performance test services inside or outside the environment with Siege. Test requests are defined in files and it is possible to define different headers to be used for requests for each file. By default, tests are run once every day but it's possible to configure them to run more often or seldomly.
