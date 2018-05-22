@@ -5,7 +5,7 @@ def main():
         content = f.readlines()
 
     content = [x.strip() for x in content] 
-    with open('test_data_pelias.txt', 'a') as file1:
+    with open('test_data_pelias.txt', 'w') as file1:
         for line in content:
             file1.write('http://pelias-api.marathon.l4lb.thisdcos.directory:8080/v1/search?text='+ line + '\n')
         i = 0
