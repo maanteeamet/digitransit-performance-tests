@@ -42,7 +42,7 @@ while true; do
                 "{\"channel\": \"performance-tests\", \"text\": \"Testing file: $FILE \n\"""}" \
                 $SLACK_WEBHOOK_URL
             # By default, uses 10 concurrent users every second for 60 seconds
-            siege -c$CONCURRENT_USERS -d1 -t$SIEGE_TIME -f \
+            siege -c$CONCURRENT_USERS -d1 -t$SIEGE_TIME -i -f \
                 `echo "$FILE_AND_HEADERS" | sed "s/'//g"` 2>&1 | \
                 jq -R -s '{channel: "performance-tests", text: .}' | \
                 curl -X POST -H 'Content-type: application/json'  -d@- \
