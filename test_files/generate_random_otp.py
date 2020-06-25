@@ -4,7 +4,7 @@ def main():
     with open('test_data_otp.txt', 'w') as the_file:
         i = 0
         while i < 1000:
-            random_row = 'http://opentripplanner-hsl.marathon.l4lb.thisdcos.directory:8080/otp/routers/hsl/index/graphql POST { stop(id: "HSL:' + str(random.randint(1040000, 1050000)) + '") { name lat lon wheelchairBoarding } }'
+            random_row = 'https://api.dev.peatus.ee/routing/v1/routers/estonia/index/graphql POST { stop(code: "' + str(random.randint(10001, 50020)) + '-1") { name lat lon wheelchairAccessible } }'
             the_file.write(random_row + '\n')
             i += 1
 
